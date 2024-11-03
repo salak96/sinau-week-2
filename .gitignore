@@ -1,0 +1,20 @@
+# Dependency
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Log files
+*.log
+
+# OS-specific files
+.DS_Store
+
+# Environment files
+.env
+.env.local
+.env.development
+
+# Style files
+.hitntrc

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Number Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            width: 300px;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .prime {
+            color: #4CAF50;
+        }
+
+        .not-prime {
+            color: #FF5733;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Prime Number Checker</h2>
+        <input type="number" id="numberInput" placeholder="Masukkan angka" />
+        <button onclick="checkPrime()">Cek Bilangan Prima</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function isPrime(n) {
+            if (n <= 1) return false; // Bilangan <= 1 bukan prima
+            if (n <= 3) return true;  // 2 dan 3 adalah bilangan prima
+
+            if (n % 2 === 0 || n % 3 === 0) return false; // Kelipatan 2 dan 3 bukan prima
+
+            for (let i = 5; i * i <= n; i += 6) {
+                if (n % i === 0 || n % (i + 2) === 0) return false;
+            }
+
+            return true;
+        }
+
+        function checkPrime() {
+            const input = document.getElementById("numberInput").value;
+            const number = parseInt(input);
+            const resultDiv = document.getElementById("result");
+
+            // Periksa apakah bilangan prima
+            if (isPrime(number)) {
+                resultDiv.textContent = `${number} adalah bilangan prima.`;
+                resultDiv.classList.add("prime");
+                resultDiv.classList.remove("not-prime");
+            } else {
+                resultDiv.textContent = `${number} bukan bilangan prima.`;
+                resultDiv.classList.add("not-prime");
+                resultDiv.classList.remove("prime");
+            }
+        }
+    </script>
+</body>
+</html>
